@@ -12,6 +12,11 @@ def details(request):
     team = Cricketteam.objects.all()
     serializer = CricketteamSerializers(team, many=True)
     return Response(serializer.data)
+@api_view(['GET'])
+def detail(request,pk):
+    team = Cricketteam.objects.get(id=pk)
+    serializer = CricketteamSerializers(team)
+    return Response(serializer.data)
 
 @api_view(['POST'])
 def create(request):
